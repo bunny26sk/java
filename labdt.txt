@@ -1,0 +1,544 @@
+PROGRAM 1: DDL AND DML OPERATIONS
+Aim
+To create a Product table and perform DDL and DML operations using SQL commands.
+Procedure
+1.	Create a database named ShopDB.
+2.	Create a Product table with suitable fields.
+3.	Insert product records into the table.
+4.	Display the records using SELECT.
+5.	Update the price of a product using UPDATE.
+6.	Delete a product using DELETE.
+7.	Add a new column using ALTER TABLE.
+8.	Display the table structure using DESC.
+9.	Remove all records using TRUNCATE.
+10.	Stop the program.
+Source Code
+CREATE DATABASE ShopDB;
+USE ShopDB;
+
+CREATE TABLE Product (
+    Product_ID INT PRIMARY KEY,
+    Product_Name VARCHAR(30),
+    Category VARCHAR(20),
+    Price INT
+);
+
+INSERT INTO Product VALUES
+(101, 'Keyboard', 'Electronics', 800),
+(102, 'Mouse', 'Electronics', 500),
+(103, 'Notebook', 'Stationery', 100);
+
+-- Display records
+SELECT * FROM Product;
+
+-- Update product price
+UPDATE Product
+SET Price = 900
+WHERE Product_ID = 101;
+
+SELECT * FROM Product;
+
+-- Delete a product
+DELETE FROM Product
+WHERE Product_ID = 103;
+
+SELECT * FROM Product;
+
+-- Add a new column
+ALTER TABLE Product
+ADD Stock INT;
+
+DESC Product;
+
+-- Add stock values
+UPDATE Product SET Stock = 20
+WHERE Product_ID = 101;
+
+UPDATE Product SET Stock = 35
+WHERE Product_ID = 102;
+
+SELECT * FROM Product;
+
+-- Remove all records
+TRUNCATE TABLE Product;
+
+SELECT * FROM Product;
+
+Output
+Initial records 
+
+Product_ID	Product_Name	Category	Price
+
+101	             Keyboard	             Electronics     800
+102	             Mouse	             Electronics	 500
+103	             Notebook	              Stationery	 100
+
+
+
+
+
+
+
+After UPDATE 
+
+Product_ID	Product_Name	Category	Price
+
+101	            Keyboard	           Electronics	900
+102	            Mouse                        Electronics	500
+103	            Notebook	           Stationery	100
+
+After DELETE 
+
+Product_ID	Product_Name	Category	Price
+
+101	            Keyboard	            Electronics	900
+102	            Mouse	                        Electronics	500
+
+After ALTER TABLE, the Stock column is added. After TRUNCATE, the table contains zero records.
+Result
+Thus, DDL and DML operations were performed successfully on the Product table. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+PROGRAM 2: FOREIGN KEY AND REFERENTIAL INTEGRITY
+
+Aim
+To create related Customer and Orders tables and implement foreign key constraints to maintain referential integrity.
+Procedure
+1.	Create a database named SalesDB.
+2.	Create a Customer table with Customer_ID as the primary key.
+3.	Create an Orders table with Order_ID as the primary key and Customer_ID as a foreign key.
+4.	Insert customer records.
+5.	Insert orders for existing customers.
+6.	Display the records from both tables.
+7.	Attempt to insert an order for a customer who does not exist.
+8.	Verify the foreign key constraint.
+9.	Stop the program.
+Source Code
+
+CREATE DATABASE SalesDB;
+USE SalesDB;
+
+CREATE TABLE Customer (
+    Customer_ID INT PRIMARY KEY,
+    Customer_Name VARCHAR(30) NOT NULL,
+    City VARCHAR(30)
+);
+
+CREATE TABLE Orders (
+    Order_ID INT PRIMARY KEY,
+    Order_Date DATE,
+    Amount INT,
+    Customer_ID INT,
+    FOREIGN KEY (Customer_ID)
+        REFERENCES Customer(Customer_ID)
+);
+
+
+
+INSERT INTO Customer VALUES
+(1, 'Arun', 'Chennai'),
+(2, 'Priya', 'Madurai'),
+(3, 'Kumar', 'Coimbatore');
+
+INSERT INTO Orders VALUES
+(101, '2026-01-10', 2500, 1),
+(102, '2026-01-12', 1800, 2),
+(103, '2026-01-15', 3200, 1),
+(104, '2026-01-20', 1500, 3);
+
+-- Display Customer table
+SELECT * FROM Customer;
+
+-- Display Orders table
+SELECT * FROM Orders;
+
+-- Test referential integrity
+-- This statement should fail because Customer_ID 5 does not exist.
+INSERT INTO Orders VALUES
+(105, '2026-01-25', 2000, 5);
+
+Output
+Customer Table
+
+Customer_ID	Customer_Name	City
+
+1	             Arun	                        Chennai
+2	             Priya	                        Madurai
+3	             Kumar	             Coimbatore
+
+Orders Table 
+
+Order_ID	Order_Date	Amount	Customer_ID
+
+101	            2026-01-10	  2500	                    1
+102	            2026-01-12	  1800	                    2
+103	            2026-01-15	   3200	                    1
+104	            2026-01-20	   1500	                    3
+
+
+
+
+Invalid insertion
+The insertion of Order_ID 105 is rejected because Customer_ID 5 does not exist in the Customer table.
+
+Result
+Thus, foreign key constraints were implemented successfully, and referential integrity was maintained between the Customer and Orders tables.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+PROGRAM 3: WHERE CLAUSE AND AGGREGATE FUNCTIONS
+
+Aim
+To retrieve book details using the WHERE clause and calculate aggregate values using COUNT(), SUM(), AVG(), MAX() and MIN().
+Procedure
+1.	Create a Book table.
+2.	Insert sample book records.
+3.	Retrieve books with a price greater than 300 using WHERE.
+4.	Calculate the total number of books.
+5.	Calculate the total and average price.
+6.	Find the highest and lowest prices using aggregate functions.
+7.	Display the results.
+8.	Stop the program.
+Source Code
+CREATE TABLE Book (
+    Book_ID INT PRIMARY KEY,
+    Book_Name VARCHAR(40),
+    Category VARCHAR(20),
+    Price INT
+);
+
+INSERT INTO Book VALUES
+(1, 'SQL Basics', 'Database', 450),
+(2, 'Python Guide', 'Programming', 600),
+(3, 'Java Basics', 'Programming', 500),
+(4, 'Web Design', 'Web', 300),
+(5, 'DBMS Guide', 'Database', 400);
+
+-- Display books priced above 300
+SELECT *
+FROM Book
+WHERE Price > 300;
+
+
+
+
+-- Aggregate functions for Database category
+SELECT
+    COUNT(*) AS Total_Books,
+    SUM(Price) AS Total_Price,
+    AVG(Price) AS Average_Price,
+    MAX(Price) AS Highest_Price,
+    MIN(Price) AS Lowest_Price
+FROM Book
+WHERE Category = 'Database';
+
+Output
+Books priced above 300
+
+Book_ID	Book_Name	   Category	           Price
+
+1	            SQL Basics	   Database	            450
+2	            Python Guide	   Programming	600
+3	            Java Basics	   Programming	500
+5	             DBMS Guide	   Database	            400
+
+Aggregate Function Output 
+
+Total_Books	Total_Price	Average_Price	  Highest_Price  Lowest_Price
+
+         2	                  850	            425	      450	        400
+
+Result
+Thus, the WHERE clause and aggregate functions were executed successfully to retrieve and summarize book details.
+
+
+
+
+
+
+
+
+
+
+PROGRAM 4: SUBQUERIES AND SIMPLE JOINS
+Aim
+To execute SQL queries using the WHERE clause, subquery with IN, INNER JOIN and LEFT JOIN using Library and Publisher details.
+Procedure
+1.	Create a Publisher table and a LibraryBook table.
+2.	Insert records into both tables.
+3.	Retrieve books with a price greater than 400.
+4.	Use a subquery with IN to retrieve books from selected publishers.
+5.	Perform an INNER JOIN to display books with matching publisher details.
+6.	Perform a LEFT JOIN to display all books, including books without a matching publisher.
+7.	Display the results.
+8.	Stop the program.
+Source Code
+CREATE TABLE Publisher (
+    Publisher_ID INT PRIMARY KEY,
+    Publisher_Name VARCHAR(30)
+);
+
+CREATE TABLE LibraryBook (
+    Book_ID INT PRIMARY KEY,
+    Book_Name VARCHAR(30),
+    Price INT,
+    Publisher_ID INT
+);
+
+INSERT INTO Publisher VALUES
+(10, 'Sun Publications'),
+(20, 'Tech Publications'),
+(30, 'Global Books');
+
+INSERT INTO LibraryBook VALUES
+(1, 'SQL Guide', 450, 10),
+(2, 'Python Guide', 600, 20),
+(3, 'Java Guide', 500, 10),
+(4, 'Web Design', 350, 30),
+(5, 'C Programming', 400, NULL);
+
+
+-- 1. WHERE clause
+SELECT *
+FROM LibraryBook
+WHERE Price > 400;
+
+-- 2. Subquery using IN
+SELECT Book_Name, Price
+FROM LibraryBook
+WHERE Publisher_ID IN (
+    SELECT Publisher_ID
+    FROM Publisher
+    WHERE Publisher_Name IN
+    ('Sun Publications', 'Tech Publications')
+);
+
+-- 3. INNER JOIN
+SELECT LibraryBook.Book_Name,
+       Publisher.Publisher_Name
+FROM LibraryBook
+INNER JOIN Publisher
+ON LibraryBook.Publisher_ID = Publisher.Publisher_ID;
+
+-- 4. LEFT JOIN
+SELECT LibraryBook.Book_Name,
+       Publisher.Publisher_Name
+FROM LibraryBook
+LEFT JOIN Publisher
+ON LibraryBook.Publisher_ID = Publisher.Publisher_ID;
+
+Output
+1. WHERE Clause
+Book_ID	Book_Name	   Price     Publisher_ID
+
+1	             SQL Guide	    450	          10
+2	             Python Guide     600            20
+3	             Java Guide	     500	           10
+
+
+
+
+
+
+
+2. Subquery using IN 
+
+Book_Name	Price
+
+SQL Guide	450
+Python Guide	600
+Java Guide	500
+
+3. INNER JOIN 
+
+Book_Name	Publisher_Name
+
+SQL Guide	Sun Publications
+Python Guide	Tech Publications
+Java Guide	Sun Publications
+Web Design	Global Books
+
+4. LEFT JOIN 
+
+Book_Name	Publisher_Name
+
+SQL Guide	Sun Publications
+Python Guide	Tech Publications
+Java Guide	Sun Publications
+Web Design	Global Books
+C Programming	NULL
+
+Result
+Thus, the WHERE clause, subquery with IN, INNER JOIN and LEFT JOIN were executed successfully to retrieve library book and publisher details.
+
+
+
+
+
+
+
+
+
+
+
+PROGRAM 5: NATURAL JOIN, EQUI JOIN AND OUTER JOINS
+Aim
+To perform Natural Join, Equi Join, Left Outer Join and Right Outer Join using Vehicle and VehicleType tables.
+Procedure
+1.	Create Vehicle and VehicleType tables.
+2.	Insert sample vehicle and vehicle type records.
+3.	Perform a NATURAL JOIN using the common Type_ID column.
+4.	Perform an EQUI JOIN using the equality operator.
+5.	Perform a LEFT OUTER JOIN to display all vehicles and their types.
+6.	Perform a RIGHT OUTER JOIN to display all vehicle types and matching vehicles.
+7.	Display the results.
+8.	Stop the program.
+
+Source Code
+
+CREATE TABLE Vehicle (
+    Vehicle_ID INT PRIMARY KEY,
+    Vehicle_Name VARCHAR(30),
+    Type_ID INT
+);
+
+CREATE TABLE VehicleType (
+    Type_ID INT,
+    Type_Name VARCHAR(30)
+);
+
+INSERT INTO Vehicle VALUES
+(1, 'Honda City', 10),
+(2, 'Royal Enfield', 20),
+(3, 'Hyundai i20', 10),
+(4, 'Hero Cycle', 30);
+
+INSERT INTO VehicleType VALUES
+(10, 'Car'),
+(20, 'Bike'),
+(40, 'Bus');
+
+
+-- 1. Natural Join
+SELECT *
+FROM Vehicle
+NATURAL JOIN VehicleType;
+
+-- 2. Equi Join
+SELECT Vehicle.Vehicle_ID,
+       Vehicle.Vehicle_Name,
+       Vehicle.Type_ID,
+       VehicleType.Type_Name
+FROM Vehicle
+JOIN VehicleType
+ON Vehicle.Type_ID = VehicleType.Type_ID;
+
+-- 3. Left Outer Join
+SELECT Vehicle.Vehicle_ID,
+       Vehicle.Vehicle_Name,
+       Vehicle.Type_ID,
+       VehicleType.Type_Name
+FROM Vehicle
+LEFT OUTER JOIN VehicleType
+ON Vehicle.Type_ID = VehicleType.Type_ID;
+
+-- 4. Right Outer Join
+SELECT Vehicle.Vehicle_ID,
+       Vehicle.Vehicle_Name,
+       VehicleType.Type_ID,
+       VehicleType.Type_Name
+FROM Vehicle
+RIGHT OUTER JOIN VehicleType
+ON Vehicle.Type_ID = VehicleType.Type_ID;
+
+
+
+
+
+
+Output
+1. Natural Join
+Type_ID	Vehicle_ID	Vehicle_Name	   Type_Name
+
+10	                  1	              Honda City	       Car
+20	                  2	              Royal Enfield       Bike
+10	                  3	              Hyundai i20	       Car
+
+2. Equi Join  
+
+Vehicle_ID	Vehicle_Name	    Type_ID	Type_Name
+
+1	             Honda City	           10	     Car
+2	             Royal Enfield	           20	    Bike
+3	             Hyundai i20	           10	     Car
+
+
+3. Left Outer Join
+
+Vehicle_ID           Vehicle_Name         Type_ID        Type_Name
+
+    1                          Honda City               10                  car       
+    2                          Royal Enfield            20                 Bike
+    3                          Hyundai i20              10                 Car
+    4                          Hero Cycle                30                NULL
+
+4. Right Outer Join
+
+Vehicle_ID             Vehicle_Name         Type_ID       Type_Name
+
+1                               Honda City                10                Car
+2                               Royal Enfield             20                Bike
+3                               Hyundai i20               10                Car
+NULL                        NULL                         40                Bus
+
+
+Result
+Thus, Natural Join, Equi Join, Left Outer Join and Right Outer Join were executed successfully to retrieve vehicle and vehicle type details.
