@@ -1,0 +1,542 @@
+
+
+1. Java Program for Basic Arithmetic Operations Using Classes, Objects and Methods
+
+Aim
+
+To develop a simple Java program to perform addition, subtraction, multiplication, and division of two numbers using class, object, and methods.
+Algorithm
+1.	Start the program. 
+2.	Create a class named ArithmeticOperations. 
+3.	Declare two integer variables a and b. 
+4.	Define four methods: 
+o	add() to perform addition. 
+o	subtract() to perform subtraction. 
+o	multiply() to perform multiplication. 
+o	divide() to perform division. 
+5.	Create an object obj of the ArithmeticOperations class. 
+6.	Read two numbers from the user using Scanner. 
+7.	Store the numbers in a and b using the object. 
+8.	Call the add(), subtract(), multiply(), and divide() methods using the object. 
+9.	Display the results. 
+10.	Stop the program.
+
+Source Code
+
+import java.util.Scanner;
+
+public class ArithmeticOperations {
+
+    int a, b;
+
+    void add() {
+        System.out.println("Addition = " + (a + b));
+    }
+
+    void subtract() {
+        System.out.println("Subtraction = " + (a - b));
+    }
+
+    void multiply() {
+        System.out.println("Multiplication = " + (a * b));
+    }
+
+    void divide() {
+        System.out.println("Division = " + (a / b));
+    }
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        // Creating object
+        ArithmeticOperations obj = new ArithmeticOperations();
+
+        System.out.print("Enter first number: ");
+        obj.a = sc.nextInt();
+
+        System.out.print("Enter second number: ");
+        obj.b = sc.nextInt();
+
+        obj.add();
+        obj.subtract();
+        obj.multiply();
+        obj.divide();
+
+        sc.close();
+    }
+}
+
+Steps to Run the Java Programs
+Step 1: Check Java Installation
+Open Command Prompt and type:
+java -version
+Then:
+javac -version
+You should get output similar to:
+java version "25"
+javac 25
+Step 2: Create the First Program
+Open Notepad 
+Copy the first program and save it as:
+ArithmeticOperations.java
+Important: The filename must match the public class name.
+Step 3: Open Command Prompt
+Navigate to the folder where you saved the program. For example:
+cd C:\Users\Admin\Documents
+Step 4: Compile the Program
+javac ArithmeticOperations.java
+If there are no errors, a .class file will be created.
+Step 5: Run the Program
+java ArithmeticOperations
+Enter the numbers when prompted.
+________________________________________
+
+Sample Output
+
+Enter first number: 20
+Enter second number: 5
+
+Addition = 25
+Subtraction = 15
+Multiplication = 100
+Division = 4
+
+Result
+
+Thus, the Java program was successfully developed and executed to perform addition, subtraction, multiplication, and division using classes, objects, and methods.
+
+________________________________________
+2. Java Program for String Manipulation and Array Operations
+
+Aim
+
+To develop a Java program to perform basic string manipulation and array operations such as finding string length, converting the string to uppercase and lowercase, reversing a string, displaying array elements, and finding the sum of array elements.
+
+Algorithm
+1.	Start the program.
+2.	Read a string from the user.
+3.	Find and display the length of the string.
+4.	Convert the string into uppercase.
+5.	Convert the string into lowercase.
+6.	Reverse and display the string.
+7.	Read the size of an integer array.
+8.	Read the array elements.
+9.	Display all array elements.
+10.	Calculate the sum of the array elements.
+11.	Display the sum.
+12.	Stop the program.
+
+Source Code
+
+import java.util.Scanner;
+
+public class StringArrayOperations {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        // String operations
+        System.out.print("Enter a string: ");
+        String str = sc.nextLine();
+
+        System.out.println("\nString Operations");
+        System.out.println("-----------------");
+
+        System.out.println("Original String : " + str);
+        System.out.println("String Length   : " + str.length());
+        System.out.println("Uppercase       : " + str.toUpperCase());
+        System.out.println("Lowercase       : " + str.toLowerCase());
+
+        // Reverse string
+        String reverse = "";
+        for (int i = str.length() - 1; i >= 0; i--) {
+            reverse = reverse + str.charAt(i);
+        }
+
+        System.out.println("Reversed String : " + reverse);
+
+        // Array operations
+        System.out.print("\nEnter the number of array elements: ");
+        int n = sc.nextInt();
+
+        int[] arr = new int[n];
+        int sum = 0;
+
+        System.out.println("Enter " + n + " array elements:");
+
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+            sum = sum + arr[i];
+        }
+
+        System.out.println("\nArray Operations");
+        System.out.println("----------------");
+
+        System.out.print("Array Elements : ");
+
+        for (int i = 0; i < n; i++) {
+            System.out.print(arr[i] + " ");
+        }
+
+        System.out.println("\nSum of Array   : " + sum);
+
+        sc.close();
+    }
+}
+
+
+Sample Output
+
+Enter a string: Java Programming
+
+String Operations
+-----------------
+Original String : Java Programming
+String Length   : 16
+Uppercase       : JAVA PROGRAMMING
+Lowercase       : java programming
+Reversed String : gnimmargorP avaJ
+
+Enter the number of array elements: 5
+Enter 5 array elements:
+10
+20
+30
+40
+50
+
+Array Operations
+----------------
+Array Elements : 10 20 30 40 50
+Sum of Array   : 150
+
+Result
+
+Thus, the Java program was successfully developed and executed to perform string manipulation and array operations.
+
+3. Java Program Demonstrating Inheritance, Polymorphism, Interface and Exception Handling
+
+Aim
+
+To develop a Java program that demonstrates the concepts of inheritance, polymorphism, interfaces, and exception handling.
+Algorithm
+1.	Start the program.
+2.	Create an interface named Animal with a method sound().
+3.	Create a class Dog that implements the Animal interface.
+4.	Create a parent class AnimalParent with a method eat().
+5.	Create a child class Dog that inherits the AnimalParent class.
+6.	Override the sound() method in the Dog class to demonstrate polymorphism.
+7.	Create an object of the Dog class.
+8.	Call the inherited eat() method and overridden sound() method.
+9.	Use a try-catch block to handle an arithmetic exception such as division by zero.
+10.	Display the results.
+11.	Stop the program.
+
+Source Code
+interface Animal {
+    void sound();
+}
+
+// Parent class
+class AnimalParent {
+    void eat() {
+        System.out.println("Animal is eating");
+    }
+}
+
+// Child class - Inheritance
+class Dog extends AnimalParent implements Animal {
+
+    // Polymorphism - Method Overriding
+    public void sound() {
+        System.out.println("Dog barks");
+    }
+}
+
+public class OOPDemo {
+
+    public static void main(String[] args) {
+
+        // Creating object
+        Dog obj = new Dog();
+
+        // Inheritance
+        obj.eat();
+
+        // Interface and Polymorphism
+        obj.sound();
+
+        // Exception Handling
+        try {
+            int a = 10;
+            int b = 0;
+
+            int result = a / b;
+
+            System.out.println("Result = " + result);
+        }
+        catch (ArithmeticException e) {
+            System.out.println("Exception: Cannot divide by zero");
+        }
+
+        System.out.println("Program executed successfully");
+    }
+}
+
+Sample Output
+
+Animal is eating
+Dog barks
+Exception: Cannot divide by zero
+Program executed successfully
+
+Result
+
+Thus, the Java program was successfully developed and executed to demonstrate inheritance, polymorphism, interfaces, and exception handling.
+
+
+4. Java Program for File Read and Write Operations Using Swing
+
+Aim
+
+To develop a Swing-based Java application to write text to a file and read the contents of the file.
+
+Algorithm
+
+1. Start the program.
+2. Import the Swing, AWT, and file-handling packages.
+3. Create a JFrame with a text area and two buttons: Write to File and Read from File.
+4. When Write to File is clicked, save the text area contents into a file named sample.txt.
+5. When Read from File is clicked, read the contents of sample.txt and display them in the text area.
+6. Display a message if the file operation fails.
+7. Stop the program.
+
+Source Code
+
+import javax.swing.*;
+import java.awt.*;
+import java.io.*;
+ 
+public class SwingFileApp extends JFrame {
+    JTextArea area;
+ 
+    SwingFileApp() {
+        setTitle("File Read and Write");
+        setSize(400, 300);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+ 
+        area = new JTextArea();
+        JButton write = new JButton("Write to File");
+        JButton read = new JButton("Read from File");
+ 
+        JPanel panel = new JPanel();
+        panel.add(write);
+        panel.add(read);
+ 
+        add(new JScrollPane(area), BorderLayout.CENTER);
+        add(panel, BorderLayout.SOUTH);
+ 
+        write.addActionListener(e -> {
+            try (FileWriter fw = new FileWriter("sample.txt")) {
+                fw.write(area.getText());
+                JOptionPane.showMessageDialog(this, "File saved");
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(this, "Write error");
+            }
+        });
+ 
+        read.addActionListener(e -> {
+            try (BufferedReader br =
+                    new BufferedReader(new FileReader("sample.txt"))) {
+                String line;
+                String text = "";
+                while ((line = br.readLine()) != null) {
+                    text += line + "\n";
+                }
+                area.setText(text);
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(this,
+                        "File not found. Write text first.");
+            }
+        });
+ 
+        setVisible(true);
+    }
+ 
+    public static void main(String[] args) {
+        new SwingFileApp();
+    }
+}
+
+Steps to Run the Program
+
+1. Install the JDK and check the installation using java -version and javac -version.
+2. Open Notepad or a code editor and copy the source code.
+3. Save the file as SwingFileApp.java.
+4. Open Command Prompt or Terminal in the folder where the file is saved.
+5. Compile the program using: javac SwingFileApp.java
+6. Run the program using: java SwingFileApp
+7. Type some text in the application and click Write to File.
+8. Click Read from File to display the saved contents.
+
+Sample Output
+
+The application window displays a text area and two buttons: Write to File and Read from File.
+Example: Type “Welcome to Java” and click Write to File. A message “File saved” appears. Click Read from File and “Welcome to Java” is displayed in the text area.
+
+Result
+
+Thus, the Swing-based Java application was successfully developed and executed to perform file read and write operations.
+ 
+5. Java Program to Read the Contents of a Web Page Using the URL Class
+
+Aim
+
+To develop a Java program to read and display the contents of a web page using the URL class.
+
+Algorithm
+
+1. Start the program.
+2. Import the URL, BufferedReader, and InputStreamReader classes.
+3. Create a URL object for the required web page.
+4. Open an input stream to read the web page.
+5. Read the contents line by line.
+6. Display the contents on the screen and close the stream.
+7. Stop the program.
+
+Source Code
+
+import java.net.URL;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+ 
+public class ReadWebPage {
+    public static void main(String[] args) {
+        try {
+            URL url = new URL("https://example.com");
+ 
+            BufferedReader br = new BufferedReader(
+                    new InputStreamReader(url.openStream()));
+ 
+            String line;
+            while ((line = br.readLine()) != null) {
+                System.out.println(line);
+            }
+ 
+            br.close();
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+}
+
+Notes
+
+The program requires an internet connection. Some websites may block direct requests or may return different content.
+Steps to Run the Program
+1. Ensure that Java is installed and the computer is connected to the internet.
+2. Open Notepad or a code editor and copy the source code.
+3. Save the file as ReadWebPage.java.
+4. Open Command Prompt or Terminal in the folder where the file is saved.
+5. Compile the program using: javac ReadWebPage.java
+6. Run the program using: java ReadWebPage
+7. The HTML content returned by the web page will be displayed in the terminal.
+
+Sample Output
+
+The output displays HTML text returned by https://example.com. The exact output may vary depending on the website response and internet connection.
+
+Result
+
+Thus, the Java program was successfully developed and executed to read the contents of a web page using the URL class.
+ 
+6. Java Client-Server Application Using Stream Sockets
+
+Aim
+
+To develop a Java client-server application using TCP stream sockets to exchange messages between a client and a server.
+
+Algorithm
+
+1. Start the program.
+2. Create a server using ServerSocket on port 5000.
+3. Wait for a client to connect to the server.
+4. Read the message sent by the client.
+5. Send a reply from the server to the client.
+6. Create a client using Socket to connect to localhost on port 5000.
+7. Send a message and display the reply received from the server.
+8. Stop the program.
+
+Source Code
+
+// Save this code in SimpleServer.java
+import java.net.*;
+import java.io.*;
+ 
+public class SimpleServer {
+    public static void main(String[] args) throws Exception {
+        ServerSocket server = new ServerSocket(5000);
+        System.out.println("Server waiting for client...");
+ 
+        Socket socket = server.accept();
+        BufferedReader in = new BufferedReader(
+                new InputStreamReader(socket.getInputStream()));
+        PrintWriter out = new PrintWriter(
+                socket.getOutputStream(), true);
+ 
+        String message = in.readLine();
+        System.out.println("Client says: " + message);
+        out.println("Hello from server");
+ 
+        socket.close();
+        server.close();
+    }
+}
+ 
+// Save this code separately in SimpleClient.java
+import java.net.*;
+import java.io.*;
+ 
+public class SimpleClient {
+    public static void main(String[] args) throws Exception {
+        Socket socket = new Socket("localhost", 5000);
+        PrintWriter out = new PrintWriter(
+                socket.getOutputStream(), true);
+        BufferedReader in = new BufferedReader(
+                new InputStreamReader(socket.getInputStream()));
+ 
+        out.println("Hello from client");
+        System.out.println("Server says: " + in.readLine());
+ 
+        socket.close();
+    }
+}
+
+Steps to Run the Program
+1. Install the JDK and check the installation using java -version and javac -version.
+2. Create a file named SimpleServer.java and copy only the SimpleServer class into it.
+3. Create another file named SimpleClient.java and copy only the SimpleClient class into it.
+4. Open Command Prompt or Terminal in the folder containing both files.
+5. Compile both programs using: javac SimpleServer.java SimpleClient.java
+6. Open the first terminal and run the server using: java SimpleServer
+7. Open a second terminal in the same folder and run the client using: java SimpleClient.
+8. Run the server before the client. Both programs use port 5000; change the port in both files if it is already in use.
+
+Sample Output
+
+Server terminal:
+Server waiting for client...
+Client says: Hello from client
+
+Client terminal:
+Server says: Hello from server
+
+Result
+
+Thus, the Java client-server application was successfully developed and executed using stream sockets.
+ 
+
+
+
