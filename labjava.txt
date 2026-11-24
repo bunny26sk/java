@@ -537,6 +537,127 @@ Result
 
 Thus, the Java client-server application was successfully developed and executed using stream sockets.
  
+7. Develop a Java program to create, read, and parse JSON data using JSON objects.
+
+Aim
+
+To develop a Java program to create, read, and parse JSON data using JSON objects and store the JSON data in a file.
+
+Algorithm
+
+1.	Start the program.
+2.	Create a JSON object using JSONObject.
+3.	Add student details such as ID, name, department, age, and college.
+4.	Create a file named student.json.
+5.	Write the JSON data into the file using FileWriter.
+6.	Read the JSON data using FileReader.
+7.	Parse the JSON data using JSONParser.
+8.	Display the student details.
+9.	Handle exceptions if any error occurs.
+10.	Stop the program.
+
+Source Code:
+
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import java.io.FileWriter;
+import java.io.FileReader;
+
+public class JSONExample {
+
+    public static void main(String[] args) {
+
+        try {
+
+            // Step 1: Create a JSON Object
+            JSONObject student = new JSONObject();
+
+            student.put("id", 101);
+            student.put("name", "Arun");
+            student.put("department", "Computer Science");
+            student.put("age", 20);
+            student.put("college", "ABC College");
+
+            // Step 2: Write JSON data into a file
+            FileWriter writer = new FileWriter("student.json");
+
+            writer.write(student.toJSONString());
+            writer.close();
+
+            System.out.println("JSON file created successfully!");
+
+            // Step 3: Read JSON data from file
+            FileReader reader = new FileReader("student.json");
+
+            // Step 4: Parse JSON data
+            JSONParser parser = new JSONParser();
+
+            JSONObject jsonObject =
+                (JSONObject) parser.parse(reader);
+
+            reader.close();
+
+            // Step 5: Display JSON data
+            System.out.println("\nJSON Data:");
+
+            System.out.println("ID: " +
+                jsonObject.get("id"));
+
+            System.out.println("Name: " +
+                jsonObject.get("name"));
+
+            System.out.println("Department: " +
+                jsonObject.get("department"));
+
+            System.out.println("Age: " +
+                jsonObject.get("age"));
+
+            System.out.println("College: " +
+                jsonObject.get("college"));
+
+        }
+        catch (Exception e) {
+
+            System.out.println("Error: " + e.getMessage());
+
+        }
+
+    }
+}
+
+Steps to Execute
+
+1.	Download JSON.simple JAR.
+2.	Create a Desktop folder named JSONProgram.
+3.	Save JSONExample.java and json-simple-1.1.1.jar inside the folder.
+4.	Open Command Prompt and execute:
+
+Compile:
+
+cd Desktop\JSONProgram
+
+javac -cp json-simple-1.1.1.jar JSONExample.java
+
+Run:
+java -cp ".;json-simple-1.1.1.jar" JSONExample
+
+Sample Output
+
+JSON file created successfully!
+
+JSON Data:
+ID: 101
+Name: Arun
+Department: Computer Science
+Age: 20
+College: ABC College
+
+ Check JSON File
+Open the JSONProgram folder. The program automatically creates student.json.
+
+Result: 
+Thus, the Java program to create, read, and parse JSON data was successfully executed using Command Prompt.
+
 
 
 
